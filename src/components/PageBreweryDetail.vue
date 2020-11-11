@@ -1,5 +1,5 @@
 <template>
-    
+    <p>wakka</p>
 </template>
 
 <script>
