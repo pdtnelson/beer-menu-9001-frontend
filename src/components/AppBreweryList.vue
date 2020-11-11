@@ -1,17 +1,28 @@
 <template>
-    <ul>
-        <li v-for="(brewery, index) in breweries" :key="index">
-            {{ brewery.name }}
-        </li>
-    </ul>
+    <AppTileDisplay :tileData="breweryTileData">
+    </AppTileDisplay>
 </template>   
 
 <script>
+import AppTileDisplay from './AppTileDisplay'
 export default {
     name: 'AppBreweryList',
+    components: {
+        AppTileDisplay
+    },
     data() {
         return {
             breweries: []
+        }
+    },
+    computed: {
+        breweryTileData() {
+            if(this.breweries) {
+                return this.breweries.map((b) => {
+                    return {name: b.name, description: b.description}
+                }) 
+            }
+            return []
         }
     },
     async mounted() {
