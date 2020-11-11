@@ -1,5 +1,4 @@
 <template>
-    <!-- just sketching an idea -->
     <AppTileDisplay :tileData="breweryTileData">
     </AppTileDisplay>
 </template>   
