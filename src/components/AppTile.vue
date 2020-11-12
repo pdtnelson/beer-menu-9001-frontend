@@ -1,6 +1,5 @@
 <template>
     <v-card
-        :loading="loading"
         class="mx-auto my-12"
         max-width="374"
     >
@@ -19,7 +18,7 @@
 
         <slot>
             <v-card-title>
-                <router-link :to="{ name: linkName, params: { id: 1 } }">{{ title }}</router-link>
+                <router-link :to="{ name: linkName, params: { id:  id } }">{{ title }}</router-link>
             </v-card-title>
             <v-card-text>
                 <div class="my-4 subtitle-1">
@@ -36,11 +35,12 @@ export default {
     props: {
         title: String,
         content: String,
-        resource: String
+        resourcePath: String,
+        id: Number
     },
     computed: {
         linkName() {
-            const stripSlash = this.resource.substring(1)
+            const stripSlash = this.resourcePath.substring(1)
             return stripSlash.charAt(0).toUpperCase() + stripSlash.slice(1)
         }
     }

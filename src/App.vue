@@ -2,7 +2,7 @@
   <div id="app">
     <v-app>
       <AppHeader/>
-      <v-main>
+      <v-main :class="{ 'grey lighten-3': $route.name !== 'Home'}">
         <router-view/>
       </v-main>
     </v-app>
