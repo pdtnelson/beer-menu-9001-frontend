@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-    <AppBreweryList></AppBreweryList>
+    <app-resource-tile-list endpoint="/retailer"></app-resource-tile-list>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import AppBreweryList from '@/components/AppBreweryList.vue'
+import AppResourceTileList from '@/components/AppResourceTileList.vue'
 
 export default {
   name: 'Home',
   components: {
-    AppBreweryList
+    AppResourceTileList
   }
 }
 </script>

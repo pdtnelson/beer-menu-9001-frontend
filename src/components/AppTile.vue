@@ -17,9 +17,10 @@
             src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
         ></v-img>
 
-        <v-card-title>{{ title }}</v-card-title>
-
         <slot>
+            <v-card-title>
+                <router-link :to="{ name: linkName, params: { id: 1 } }">{{ title }}</router-link>
+            </v-card-title>
             <v-card-text>
                 <div class="my-4 subtitle-1">
                     {{ content }}
@@ -34,7 +35,14 @@ export default {
     name: 'AppTile',
     props: {
         title: String,
-        content: String
+        content: String,
+        resource: String
+    },
+    computed: {
+        linkName() {
+            const stripSlash = this.resource.substring(1)
+            return stripSlash.charAt(0).toUpperCase() + stripSlash.slice(1)
+        }
     }
 }
 </script>

@@ -6,7 +6,7 @@
             :key="index"
             cols="4"
           >
-                <AppTile :title="tile.name" :content="tile.description">
+                <AppTile :title="tile.name" :content="tile.description" :resource="tileResource">
                     <slot></slot>
                 </AppTile>
             </v-col>
@@ -23,7 +23,8 @@ export default {
         AppTile
     },
     props: {
-        tileData: [] //name, description
+        tileData: [], //name, description
+        tileResource: String
     }
 }
 </script>

@@ -11,7 +11,7 @@ Vue.prototype.$http = Axios.create({
   baseURL: 'http://192.168.10.10/api'
 })
 Vue.use('vuetify')
-
+Vue.use('router')
 new Vue({
   vuetify,
   router,
