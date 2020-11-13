@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="!loading">
     <v-app>
       <AppHeader/>
       <v-main :class="{ 'grey lighten-3': $route.name !== 'Home'}">
@@ -18,6 +18,11 @@ export default {
   components: {
     AppHeader
   },
+  data() {
+    return {
+      loading: true
+    }
+  },
   methods: {
     ...mapActions({
       getAllRetailers: 'loadRetailers'
@@ -25,6 +30,7 @@ export default {
   },
   async mounted() {
     await this.getAllRetailers()
+    this.loading = false
   }
 }
 </script>
