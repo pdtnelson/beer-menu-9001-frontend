@@ -24,8 +24,6 @@ export default {
     })
   },
   async mounted() {
-    // in case the page gets refreshed, we gonna want these
-    console.log('dis happening?')
     await this.getAllRetailers()
   }
 }

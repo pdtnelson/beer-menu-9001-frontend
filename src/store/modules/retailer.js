@@ -1,5 +1,5 @@
 import Api from '@/api/api'
-
+// PDT: Classically, this should work but doesn't. Using the base store for the time being
 const state = {
     retailers: []
 }
