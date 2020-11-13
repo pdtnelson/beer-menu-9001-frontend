@@ -39,10 +39,22 @@
 
         <v-col>
           <v-sheet min-height="70vh">
-            <resource-display v-if="retailer" :resource="retailer">
+            <resource-display v-if="retailer" :resource="retailerView.retailer">
               <template v-slot:header>
                 <h1>{{ retailer.name }}</h1>
                 <h2>{{ retailer.city }}</h2>  
+              </template>
+              <template v-slot:content>
+                  <v-row>
+                    <v-col>
+                      <p>{{ retailer.description }}</p>
+                    </v-col>
+                  </v-row>
+                  <v-row v-if="retailerView.menu">
+                    <v-col>
+                      <app-resource-tile-list :listData="retailerView.menu.beers" :resourcePath="'/beer'"></app-resource-tile-list>
+                    </v-col>
+                  </v-row>
               </template>  
             </resource-display>
           </v-sheet>
@@ -53,10 +65,12 @@
 
 <script>
 import AppSingleResourceDisplay from '@/components/AppSingleResourceDisplay'
+import AppResourceTileList from '@/components/AppResourceTileList'
 export default {
   name: 'Retailer',
   components: {
-    'resource-display': AppSingleResourceDisplay
+    'resource-display': AppSingleResourceDisplay,
+    'app-resource-tile-list': AppResourceTileList
   },
   data: () => ({ 
     links: [
@@ -65,21 +79,27 @@ export default {
         'Profile',
         'Updates',
     ],
-    retailerMenu: {}
+    retailerMenu: null
   }),
   computed: {
+    retailerView() {
+      return {
+        retailer: this.$store.getters['getRetailerById'](this.$route.params['id']),
+        menu: this.retailerMenu
+      }
+    },
     retailer() {
-      return this.$store.getters['getRetailerById'](this.$route.params['id'])
+      return this.retailerView.retailer
     }
   },
   methods: {
     async loadRetailerMenu() 
     {
       try {
-        const response = await this.$http.get(`/retailer/${this.retailer.id}/menu`)
+        const response = await this.$http.get(`/retailer/${this.retailerView.retailer.id}/menu`)
         this.retailerMenu = response.data
       } catch(ex) {
-        console.error(`Something went wrong getting the menu for retailer id ${this.retailer.id}`, ex)
+        console.error(`Something went wrong getting the menu for retailer id ${this.retailerView.retailer.id}`, ex)
       }
     }
   },

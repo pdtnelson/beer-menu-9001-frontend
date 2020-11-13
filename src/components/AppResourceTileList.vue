@@ -11,7 +11,7 @@ export default {
         AppTileDisplay
     },
     props: {
-        listData: Object,
+        listData: Array,
         resourcePath: String
     },
     computed: {
