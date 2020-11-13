@@ -1,17 +1,23 @@
 <template>
   <div class="home">
-    <AppBreweryList></AppBreweryList>
+    <app-resource-tile-list :listData="retailers" :resourcePath="'/retailer'"></app-resource-tile-list>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import AppBreweryList from '@/components/AppBreweryList.vue'
+import AppResourceTileList from '@/components/AppResourceTileList.vue'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
-    AppBreweryList
+    AppResourceTileList
+  },
+  computed: {
+    ...mapGetters({
+      retailers: 'getAllRetailers'
+    })
   }
 }
 </script>

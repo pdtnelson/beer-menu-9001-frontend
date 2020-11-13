@@ -1,6 +1,5 @@
 <template>
     <v-card
-        :loading="loading"
         class="mx-auto my-12"
         max-width="374"
     >
@@ -17,9 +16,10 @@
             src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
         ></v-img>
 
-        <v-card-title>{{ title }}</v-card-title>
-
         <slot>
+            <v-card-title>
+                <router-link :to="{ name: linkName, params: { id:  id } }">{{ title }}</router-link>
+            </v-card-title>
             <v-card-text>
                 <div class="my-4 subtitle-1">
                     {{ content }}
@@ -34,7 +34,15 @@ export default {
     name: 'AppTile',
     props: {
         title: String,
-        content: String
+        content: String,
+        resourcePath: String,
+        id: Number
+    },
+    computed: {
+        linkName() {
+            const stripSlash = this.resourcePath.substring(1)
+            return stripSlash.charAt(0).toUpperCase() + stripSlash.slice(1)
+        }
     }
 }
 </script>
