@@ -1,5 +1,5 @@
 <template>
-    <AppTileDisplay :tileData="resourceTileData" :resourcePath="resourcePath">
+    <AppTileDisplay :tileData="listData" :resourcePath="resourcePath">
     </AppTileDisplay>
 </template>   
 
@@ -14,15 +14,10 @@ export default {
         listData: Object,
         resourcePath: String
     },
-    data() {
-        return {
-            resources: this.listData
-        }
-    },
     computed: {
         resourceTileData() {
-            if(this.resources) {
-                return this.resources.map((r) => {
+            if(this.listData) {
+                return this.listData.map((r) => {
                     return {id: r.id, name: r.name, description: r.description}
                 }) 
             }

@@ -11,10 +11,22 @@
 
 <script>
 import AppHeader from './components/AppHeader'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'App',
   components: {
     AppHeader
+  },
+  methods: {
+    ...mapActions({
+      getAllRetailers: 'loadRetailers'
+    })
+  },
+  async mounted() {
+    // in case the page gets refreshed, we gonna want these
+    console.log('dis happening?')
+    await this.getAllRetailers()
   }
 }
 </script>

@@ -4,11 +4,11 @@ const state = {
     retailers: []
 }
 const actions = {
-    getAllRetailers(context) {
+    async getAllRetailers(context) {
         console.log('are we even trying?')
         if(!context.state.retailers) {
             try {
-                const response =  Api().get('/retailer')
+                const response =  await Api().get('/retailer')
                 context.commit('setRetailerData', response.data)
             } catch (ex) {
                 console.error('Something went wrong getting the retailers boss', ex)
@@ -21,7 +21,7 @@ const getters = {
 }
 const mutations = {
     setRetailerData(state, data) {
-        console.log('data')
+        console.log(data)
         state.retailers = data
     }
 }

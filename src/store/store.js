@@ -12,7 +12,6 @@ export default new Vuex.Store({
 		async loadRetailers(context) {
 			if(!context.state.retailers.length > 0) {
 				try {
-					console.log('Let me ask again, are we even trying?')
 					const response =  await Api().get('/retailer')
 					context.commit('setRetailerData', response.data)
 				} catch (ex) {
@@ -23,11 +22,13 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		setRetailerData(state, data) {
-			console.log('data', data)
 			state.retailers = data
 		}
 	},
 	getters: {
-		getAllRetailers(state) { return state.retailers }
+		getAllRetailers(state) { return state.retailers },
+		getRetailerById: (state) => (id) => {
+			return state.retailers.find((r) => r.id == id) 
+		}
 	}
 })

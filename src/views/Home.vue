@@ -7,25 +7,17 @@
 <script>
 // @ is an alias to /src
 import AppResourceTileList from '@/components/AppResourceTileList.vue'
-import { mapActions, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
     AppResourceTileList
   },
-  methods: {
-    ...mapActions({
-      getAllRetailers: 'loadRetailers'
-    })
-  },
   computed: {
     ...mapGetters({
       retailers: 'getAllRetailers'
     })
-  },
-  mounted() {
-    this.getAllRetailers()
   }
 }
 </script>
