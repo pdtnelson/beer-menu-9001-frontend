@@ -5,7 +5,7 @@
       dark
       hide-on-scroll
     >
-      <router-link :to="{ name: 'Home' }">
+      <router-link :to="{ name: 'Home' }" class="link-header">
         <div class="d-flex align-center">
           <v-img
             alt="Vuetify Logo"
@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  a {
+  .link-header {
     color: white;
     text-decoration: none;
   }
