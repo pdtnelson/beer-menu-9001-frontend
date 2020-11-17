@@ -6,7 +6,7 @@
             :key="index"
             cols="4"
           >
-                <AppTile :title="tile.name" :content="tile.description" :resourcePath="resourcePath" :id="tile.id">
+                <AppTile :title="tile.name" :content="tile.description" :resourcePath="resourcePath" :id="tile.id" :defaultImg="defaultImg">
                     <slot></slot>
                 </AppTile>
             </v-col>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import AppTile from './AppTile'
+import AppTile from '@/components/AppTile'
 
 export default {
     name: 'AppTileDisplay',
@@ -25,6 +25,15 @@ export default {
     props: {
         tileData: Array, //id, name, description
         resourcePath: String
+    },
+    computed: {
+        defaultImg() { // in case the resouces doesn't definte an image, come up with backups.
+            try {
+                return require(`@/assets${this.resourcePath}.png`) // TOOD: Fix hardcoded png filetype
+            } catch {
+                return require('@/assets/beer.png')
+            }
+        }
     }
 }
 </script>
