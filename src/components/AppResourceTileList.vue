@@ -13,16 +13,6 @@ export default {
     props: {
         listData: Array,
         resourcePath: String
-    },
-    computed: {
-        resourceTileData() {
-            if(this.listData) {
-                return this.listData.map((r) => {
-                    return {id: r.id, name: r.name, description: r.description}
-                }) 
-            }
-            return []
-        }
     }
 }
 </script>
