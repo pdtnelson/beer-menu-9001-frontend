@@ -33,11 +33,26 @@
 export default {
     name: 'AppTile',
     props: {
-        title: String,
-        content: String,
-        resourcePath: String,
-        id: Number,
-        defaultImg: String
+        title: {
+          type: String,
+          required: true
+        },
+        content: {
+          type: String,
+          required: true
+        },
+        resourcePath: {
+          type: String,
+          required: true
+        },
+        id: {
+          type: Number,
+          required: true
+        },
+        defaultImg: {
+          type: String,
+          required: true
+        }
     },
     computed: {
         linkName() {
