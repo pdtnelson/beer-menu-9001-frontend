@@ -3,7 +3,9 @@
     <v-app>
       <AppHeader :title="'Beer Menu 9001'" logoImgSrc="@/assets/beer.png"/>
       <v-main :class="{ 'grey lighten-3': $route.name !== 'Home'}">
-        <router-view/>
+        <v-container>
+          <router-view/>
+        </v-container>
       </v-main>
     </v-app>
   </div>
